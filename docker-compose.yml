@@ -6,19 +6,22 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_BASE_URL=http://backend:5000
+      - NEXT_PUBLIC_API_BASE_URL=http://mod-search:8081
     depends_on:
       - backend
 
   backend:
-    build: ./backend
+    build: ./mod-search  # This should contain Dockerfile for your Spring Boot app
     ports:
-      - "5000:5000"
+      - "8082:8081"    # Spring Boot default port
     environment:
       - REDIS_URL=redis://redis:6379
+      - MEILISEARCH_HOST=http://meilisearch:7700
+      - MEILISEARCH_MASTER_KEY=masterKey
     depends_on:
       - redis
       - meilisearch
+
   redis:
     image: redis:6
     ports:

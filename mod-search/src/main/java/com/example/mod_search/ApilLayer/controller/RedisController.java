@@ -1,7 +1,5 @@
-package ApilLayer.controller;
+package com.example.mod_search.ApilLayer.controller;
 
-import Cache.service.RedisService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -1,4 +1,4 @@
-package Cache;
+package com.example.mod_search.Cache;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +10,8 @@ public class RedisConfig {
 
     @Bean
     public JedisPool jedisPool() {
-        return new JedisPool(new JedisPoolConfig(), "localhost", 6379);
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        poolConfig.setJmxEnabled(false);  // 👈 This disables JMX registration
+        return new JedisPool(poolConfig, "localhost", 6379);
     }
 }

@@ -1,4 +1,4 @@
-package Cache.service;
+package com.example.mod_search.Cache.service;
 
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
