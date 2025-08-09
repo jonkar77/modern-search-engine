@@ -1,4 +1,4 @@
-package com.example.mod_search.Cache;
+package com.example.mod_search.infra.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
