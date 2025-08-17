@@ -1,15 +1,13 @@
 package com.example.mod_search.domain.model;
-import com.example.mod_search.domain.service.frontierQueue.PrioritizerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.net.URL;
 import java.net.MalformedURLException;
 
 
-import java.net.URL;
-
 public class UrlEntry {
+
+
     private String url;
     private double pageRank;
     private long traffic;
@@ -17,6 +15,10 @@ public class UrlEntry {
     private double priorityScore;
 
     Logger logger = LoggerFactory.getLogger(UrlEntry.class);
+
+    public UrlEntry() {
+    }
+
     public UrlEntry(String url, double pageRank, long traffic, int updateFrequency) {
         this.url = url;
         this.pageRank = pageRank;
@@ -33,6 +35,9 @@ public class UrlEntry {
             logger.error(e.getMessage());
             return null;
         }
+    }
+    public void setUrl(String url) {
+        this.url = url;
     }
     public double getPageRank() { return pageRank; }
     public long getTraffic() { return traffic; }
