@@ -10,9 +10,9 @@ import java.util.*;
 import static com.example.mod_search.domain.service.frontierQueue.UrlExtractor.normalizeUrl;
 
 @Service
-public class PrioritizerService implements FrontierQueue {
+public class FrontierQueueService implements FrontierQueue {
 
-    private static final Logger logger = LoggerFactory.getLogger(PrioritizerService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FrontierQueueService.class);
 
     public List<UrlEntry> prioritizeUrls(List<String> urls) {
         logger.info("Starting URL prioritization...");
@@ -27,19 +27,19 @@ public class PrioritizerService implements FrontierQueue {
         // Process each URL and create UrlEntry objects
         urlList.forEach(url -> {
             String plainUrl = normalizeUrl(url.getUrl(), "");
-            UrlEntry urlEntry = new UrlEntry();
+//            UrlEntry urlEntry = new UrlEntry();
 
-            urlEntry.setUrl(plainUrl);
+            url.setUrl(plainUrl);
 
             //TODO: Get 3rd party metrics data for URL
             // For now, using placeholder values or implement actual data fetching
 
-            double pagerankScore = urlEntry.getPageRank(); // Already between 0 and 1
-            double trafficScore = Math.log(urlEntry.getTraffic() + 1) / 15; // Scaled
-            double updateScore = urlEntry.getUpdateFrequency() / 5.0; // Normalize to 0–1
+            double pagerankScore = url.getPageRank(); // Already between 0 and 1
+            double trafficScore = Math.log(url.getTraffic() + 1) / 15; // Scaled
+            double updateScore = url.getUpdateFrequency() / 5.0; // Normalize to 0–1
 
             double finalScore = pagerankScore * 0.5 + trafficScore * 0.3 + updateScore * 0.2;
-            urlEntry.setPriorityScore(finalScore);
+            url.setPriorityScore(finalScore);
 
             // Add to the list
 //            urlEntries.add(urlEntry);
@@ -51,4 +51,6 @@ public class PrioritizerService implements FrontierQueue {
         logger.info("Prioritization finished. Processed {} URLs.", urlList.size());
         return urlList;
     }
+
+
 }
