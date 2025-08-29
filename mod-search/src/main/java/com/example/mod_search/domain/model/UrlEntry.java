@@ -1,4 +1,6 @@
 package com.example.mod_search.domain.model;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.net.URL;
@@ -13,17 +15,21 @@ public class UrlEntry {
     private long traffic;
     private int updateFrequency; // updates/week
     private double priorityScore;
+    @Getter
+    @Setter
+    private String bucketType;
 
     Logger logger = LoggerFactory.getLogger(UrlEntry.class);
 
     public UrlEntry() {
     }
 
-    public UrlEntry(String url, double pageRank, long traffic, int updateFrequency) {
+    public UrlEntry(String url, double pageRank, long traffic, int updateFrequency, String bucketType) {
         this.url = url;
         this.pageRank = pageRank;
         this.traffic = traffic;
         this.updateFrequency = updateFrequency;
+        this.bucketType = bucketType;
     }
 
     public String getUrl() {
@@ -39,6 +45,7 @@ public class UrlEntry {
     public void setUrl(String url) {
         this.url = url;
     }
+
     public double getPageRank() { return pageRank; }
     public long getTraffic() { return traffic; }
     public int getUpdateFrequency() { return updateFrequency; }
